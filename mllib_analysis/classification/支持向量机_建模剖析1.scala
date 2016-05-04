@@ -15,16 +15,33 @@ object Lr01 extends App{
   val conf = new SparkConf().setAppName("Spark_Lr").setMaster("local")
   val sc = new SparkContext(conf)
   
-//获取数据
+//加载训练数据、切分数据
 val data = MLUtils.loadLibSVMFile(sc, "C:/my_install/spark/data/mllib/sample_libsvm_data.txt")
 val splits = data.randomSplit(Array(0.6, 0.4), seed = 11L)
 val training = splits(0).cache()
-val test = splits(1
+val test = splits(1)
+
+//训练模型
+val numIterations = 100
+val model = SVMWithSGD.train(training, numIterations)
+// Clear the default threshold.
+model.clearThreshold()
+
+//模型测试
+val scoreAndLabels = test.map { point =>
+  val score = model.predict(point.features)
+  (score, point.label)
+}
+
+//模型评估
+val metrics = new BinaryClassificationMetrics(scoreAndLabels)
+val auROC = metrics.areaUnderROC()
+println("Area under ROC = " + auROC)
 
 //三、源码调用解析
-和逻辑回归一样，训练过程均使用GeneralizedLinearModel中的run训练，只是训练使用的Gradient和Updater不同。
-在线性支持向量机中，使用HingeGradient计算梯度，使用SquaredL2Updater进行更新。 它的实现过程分为4步。
-参加逻辑回归了解这五步的详细情况。我们只需要了解HingeGradient和SquaredL2Updater的实现。
+//和逻辑回归一样，训练过程均使用GeneralizedLinearModel中的run训练，只是训练使用的Gradient和Updater不同。
+//在线性支持向量机中，使用HingeGradient计算梯度，使用SquaredL2Updater进行更新。 它的实现过程分为四个步骤。
+//参考逻辑斯特回归了解这几步的详情。下面描述HingeGradient和SquaredL2Updater的实现。
 //1、HingeGradient
 class HingeGradient extends Gradient {
   override def compute(data: Vector, label: Double, weights: Vector): (Vector, Double) = {
@@ -84,8 +101,7 @@ class SquaredL2Updater extends Updater {
   }
 }
 
-该函数的实现规则是：
-
-w' = w - thisIterStepSize * (gradient + regParam * w)
-w' = (1 - thisIterStepSize * regParam) * w - thisIterStepSize * gradient
-这里thisIterStepSize表示参数沿负梯度方向改变的速率，它随着迭代次数的增多而减小。
+//该函数的实现规则是：
+//w' = w - thisIterStepSize * (gradient + regParam * w)
+//w' = (1 - thisIterStepSize * regParam) * w - thisIterStepSize * gradient
+//这里thisIterStepSize表示参数沿负梯度方向改变的速率，它随着迭代次数的增多而减小。
