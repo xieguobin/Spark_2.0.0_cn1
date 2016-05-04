@@ -38,6 +38,8 @@ val metrics = new BinaryClassificationMetrics(scoreAndLabels)
 val auROC = metrics.areaUnderROC()
 println("Area under ROC = " + auROC)
 
+}
+
 //三、源码调用解析
 //和逻辑回归一样，训练过程均使用GeneralizedLinearModel中的run训练，只是训练使用的Gradient和Updater不同。
 //在线性支持向量机中，使用HingeGradient计算梯度，使用SquaredL2Updater进行更新。 它的实现过程分为四个步骤。
