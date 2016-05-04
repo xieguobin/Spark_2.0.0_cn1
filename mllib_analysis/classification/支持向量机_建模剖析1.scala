@@ -107,3 +107,4 @@ class SquaredL2Updater extends Updater {
 //w' = w - thisIterStepSize * (gradient + regParam * w)
 //w' = (1 - thisIterStepSize * regParam) * w - thisIterStepSize * gradient
 //这里thisIterStepSize表示参数沿负梯度方向改变的速率，它随着迭代次数的增多而减小。
+
