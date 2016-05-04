@@ -7,14 +7,6 @@
 package org.apache.spark.mllib_analysis.regression
 
 import org.apache.spark.{SparkConf,SparkContext}
-import org.apache.spark.mllib.regression.LabeledPoint
-import org.apache.spark.mllib.regression.LinearRegressionModel
-import org.apache.spark.mllib.regression.LinearRegressionWithSGD
-import org.apache.spark.mllib.linalg.Vectors
-
-object Lr01 extends App{
-  val conf = new SparkConf().setAppName("Spark_Lr").setMaster("local")
-  val sc = new SparkContext(conf)
  
 import org.apache.spark.SparkContext
 import org.apache.spark.mllib.classification.{LogisticRegressionWithLBFGS, LogisticRegressionModel}
@@ -22,6 +14,10 @@ import org.apache.spark.mllib.evaluation.MulticlassMetrics
 import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.util.MLUtils
+
+object Lr01 extends App{
+  val conf = new SparkConf().setAppName("Spark_Lr").setMaster("local")
+  val sc = new SparkContext(conf)
 
 //加载训练数据
 val data = MLUtils.loadLibSVMFile(sc, "data/mllib/sample_libsvm_data.txt")
@@ -50,6 +46,7 @@ println("Precision = " + precision)
 //保存和加载模型
 model.save(sc, "myModelPath")
 val sameModel = LogisticRegressionModel.load(sc, "myModelPath")
+}
 
 //三、源码调用解析
 3.1 训练模型
