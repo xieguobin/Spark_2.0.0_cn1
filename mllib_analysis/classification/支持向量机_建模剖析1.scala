@@ -108,3 +108,17 @@ class SquaredL2Updater extends Updater {
 //w' = (1 - thisIterStepSize * regParam) * w - thisIterStepSize * gradient
 //这里thisIterStepSize表示参数沿负梯度方向改变的速率，它随着迭代次数的增多而减小。
 
+//3、模型打分的方法
+override protected def predictPoint(
+      dataMatrix: Vector,
+      weightMatrix: Vector,
+      intercept: Double) = {
+    //w^Tx
+    val margin = weightMatrix.toBreeze.dot(dataMatrix.toBreeze) + intercept
+    threshold match {
+      case Some(t) => if (margin > t) 1.0 else 0.0
+      case None => margin
+    }
+  }
+  
+  
