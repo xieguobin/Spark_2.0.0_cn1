@@ -16,32 +16,38 @@ object Lr01 extends App{
   val conf = new SparkConf().setAppName("Spark_Lr").setMaster("local")
   val sc = new SparkContext(conf)
  
- import org.apache.spark.SparkContext
+import org.apache.spark.SparkContext
 import org.apache.spark.mllib.classification.{LogisticRegressionWithLBFGS, LogisticRegressionModel}
 import org.apache.spark.mllib.evaluation.MulticlassMetrics
 import org.apache.spark.mllib.regression.LabeledPoint
 import org.apache.spark.mllib.linalg.Vectors
 import org.apache.spark.mllib.util.MLUtils
-// 加载训练数据
+
+//加载训练数据
 val data = MLUtils.loadLibSVMFile(sc, "data/mllib/sample_libsvm_data.txt")
-// 切分数据，training (60%) and test (40%).
+
+//切分数据，training (60%) and test (40%).
 val splits = data.randomSplit(Array(0.6, 0.4), seed = 11L)
 val training = splits(0).cache()
 val test = splits(1)
-// 训练模型
+
+//训练模型
 val model = new LogisticRegressionWithLBFGS()
   .setNumClasses(10)
   .run(training)
-// Compute raw scores on the test set.
+  
+//模型测试
 val predictionAndLabels = test.map { case LabeledPoint(label, features) =>
   val prediction = model.predict(features)
   (prediction, label)
 }
-// Get evaluation metrics.
+
+//模型评估
 val metrics = new MulticlassMetrics(predictionAndLabels)
 val precision = metrics.precision
 println("Precision = " + precision)
-// 保存和加载模型
+
+//保存和加载模型
 model.save(sc, "myModelPath")
 val sameModel = LogisticRegressionModel.load(sc, "myModelPath")
 
