@@ -34,7 +34,7 @@ import org.apache.spark.rdd.RDD
  *
  */
 @Since("0.8.0")
-class LinearRegressionModel @Since("1.1.0") (
+class LinearRegressionModel @Since("1.1.0") (                                  //LinearRegressionModel伴生类
     @Since("1.0.0") override val weights: Vector,
     @Since("0.8.0") override val intercept: Double)
   extends GeneralizedLinearModel(weights, intercept) with RegressionModel with Serializable
@@ -56,7 +56,7 @@ class LinearRegressionModel @Since("1.1.0") (
 }
 
 @Since("1.3.0")
-object LinearRegressionModel extends Loader[LinearRegressionModel] {         //LinearRegressionModel伴生类
+object LinearRegressionModel extends Loader[LinearRegressionModel] {         //LinearRegressionModel伴生对象
 
   @Since("1.3.0")
   override def load(sc: SparkContext, path: String): LinearRegressionModel = {     //模型加载
@@ -86,7 +86,7 @@ object LinearRegressionModel extends Loader[LinearRegressionModel] {         //L
  * See also the documentation for the precise formulation.
  */
 @Since("0.8.0")
-@deprecated("Use ml.regression.LinearRegression or LBFGS", "2.0.0")
+@deprecated("Use ml.regression.LinearRegression or LBFGS", "2.0.0") //LinearRegressionWithSGD伴生类
 class LinearRegressionWithSGD private[mllib] (                      //随机梯度下降，损失函数f(weights) = 1/n ||A weights-y||^2^
     private var stepSize: Double,                                   //迭代步长
     private var numIterations: Int,                                 //迭代次数
@@ -121,7 +121,7 @@ class LinearRegressionWithSGD private[mllib] (                      //随机梯�
  */
 @Since("0.8.0")
 @deprecated("Use ml.regression.LinearRegression or LBFGS", "2.0.0")
-object LinearRegressionWithSGD {                                  //伴生对象LinearRegressionWithSGD，train静态方法
+object LinearRegressionWithSGD {                                  //LinearRegressionWithSGD伴生对象，train静态方法
 
   /**
    * Train a Linear Regression model given an RDD of (label, features) pairs. We run a fixed number
