@@ -1,26 +1,8 @@
-Overview: estimators, transformers and pipelines - spark.ml
+概览 Overview: estimators, transformers and pipelines - spark.ml
 
 The spark.ml package aims to provide a uniform set of high-level APIs built on top of DataFrames that help users create and tune practical machine learning pipelines. See the algorithm guides section below for guides on sub-packages of spark.ml, including feature transformers unique to the Pipelines API, ensembles, and more.
 
-Table of contents
-
-Main concepts in Pipelines
-DataFrame
-Pipeline components
-Transformers
-Estimators
-Properties of pipeline components
-Pipeline
-How it works
-Details
-Parameters
-Saving and Loading Pipelines
-Code examples
-Example: Estimator, Transformer, and Param
-Example: Pipeline
-Example: model selection via cross-validation
-Example: model selection via train validation split
-Main concepts in Pipelines
+Pipelines中主要概念 Main concepts in Pipelines
 Spark ML standardizes APIs for machine learning algorithms to make it easier to combine multiple algorithms into a single pipeline, or workflow. This section covers the key concepts introduced by the Spark ML API, where the pipeline concept is mostly inspired by the scikit-learn project.
 
 DataFrame: Spark ML uses DataFrame from Spark SQL as an ML dataset, which can hold a variety of data types. E.g., a DataFrame could have different columns storing text, feature vectors, true labels, and predictions.
@@ -33,7 +15,7 @@ Pipeline: A Pipeline chains multiple Transformers and Estimators together to spe
 
 Parameter: All Transformers and Estimators now share a common API for specifying parameters.
 
-DataFrame
+数据框架 DataFrame
 Machine learning can be applied to a wide variety of data types, such as vectors, text, images, and structured data. Spark ML adopts the DataFrame from Spark SQL in order to support a variety of data types.
 
 DataFrame supports many basic and structured types; see the Spark SQL datatype reference for a list of supported types. In addition to the types listed in the Spark SQL guide, DataFrame can use ML Vector types.
@@ -42,7 +24,7 @@ A DataFrame can be created either implicitly or explicitly from a regular RDD. S
 
 Columns in a DataFrame are named. The code examples below use names such as “text,” “features,” and “label.”
 
-Pipeline components
+Pipeline构成 Pipeline componecnts
 Transformers
 A Transformer is an abstraction that includes feature transformers and learned models. Technically, a Transformer implements a method transform(), which converts one DataFrame into another, generally by appending one or more columns. For example:
 
