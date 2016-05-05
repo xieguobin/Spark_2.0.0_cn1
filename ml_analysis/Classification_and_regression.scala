@@ -1,33 +1,5 @@
 Classification and regression - spark.ml
 
-Table of Contents
-
-Classification
-Logistic regression
-Decision tree classifier
-Random forest classifier
-Gradient-boosted tree classifier
-Multilayer perceptron classifier
-One-vs-Rest classifier (a.k.a. One-vs-All)
-Regression
-Linear regression
-Decision tree regression
-Random forest regression
-Gradient-boosted tree regression
-Survival regression
-Decision trees
-Inputs and Outputs
-Input Columns
-Output Columns
-Tree Ensembles
-Random Forests
-Inputs and Outputs
-Input Columns
-Output Columns (Predictions)
-Gradient-Boosted Trees (GBTs)
-Inputs and Outputs
-Input Columns
-Output Columns (Predictions)
 In spark.ml, we implement popular linear methods such as logistic regression and linear least squares with L1L1 or L2L2 regularization. Refer to the linear methods in mllib for details about implementation and tuning. We also include a DataFrame API for Elastic net, a hybrid of L1L1 and L2L2 regularization proposed in Zou et al, Regularization and variable selection via the elastic net. Mathematically, it is defined as a convex combination of the L1L1 and the L2L2 regularization terms:
 α(λ∥w∥1)+(1−α)(λ2∥w∥22),α∈[0,1],λ≥0
 α(λ∥w∥1)+(1−α)(λ2∥w∥22),α∈[0,1],λ≥0
