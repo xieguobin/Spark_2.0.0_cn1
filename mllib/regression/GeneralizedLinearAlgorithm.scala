@@ -275,7 +275,7 @@ abstract class GeneralizedLinearAlgorithm[M <: GeneralizedLinearModel]          
      *
      * Currently, it's only enabled in LogisticRegressionWithLBFGS    //数据降维,仅用于LBFGS
      */
-    val scaler = if (useFeatureScaling) {
+    val scaler = if (useFeatureScaling) {                             //是否使用特征缩放
       new StandardScaler(withStd = true, withMean = false).fit(input.map(_.features))
     } else {
       null
