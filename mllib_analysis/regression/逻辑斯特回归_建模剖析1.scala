@@ -48,6 +48,14 @@ val sameModel = LogisticRegressionModel.load(sc, "myModelPath")
 }
 
 //三、源码调用解析
+//(一)、建立线性回归
+//1、线性回归伴生对象 object LinearRegressionWithSGD
+     //详见https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/mllib/regression/LinearRegression.scala 第124行
+//2、线性回归类 class LinearRegressionWithSGD
+     //详见https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/mllib/regression/LinearRegression.scala 第90行  
+     
+//(二)、模型训练run方法
+     //详见https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/mllib/regression/GeneralizedLinearAlgorithm.scala 第243行开始
 //1、训练模型
 //逻辑斯特回归中，分别使用了梯度下降法和L-BFGS实现逻辑回归参数的计算。这两个算法的实现在最优化部分进行介绍，这里介绍公共的部分。
 //LogisticRegressionWithLBFGS和LogisticRegressionWithSGD的入口函数均是GeneralizedLinearAlgorithm.run，下面详细分析该方法。
@@ -69,7 +77,7 @@ def run(input: RDD[LabeledPoint]): M = {
 }
 //上面的代码初始化权重向量，向量的值均初始化为0。需要注意的是，addIntercept表示是否添加截距(Intercept，指函数图形与坐标的交点到原点的距离)，默认是不添加的。numOfLinearPredictor表示二元逻辑回归模型的个数。 我们重点看run(input, initialWeights)的实现。它的实现分四步。
 
-//3.1、根据提供的参数缩放特征并添加截距
+//2、根据提供的参数缩放特征并添加截距
 val scaler = if (useFeatureScaling) {
       new StandardScaler(withStd = true, withMean = false).fit(input.map(_.features))
     } else {
@@ -121,11 +129,11 @@ def appendBias(vector: Vector): Vector = {
       case _ => throw new IllegalArgumentException(s"Do not support vector type ${vector.getClass}")
     }
 
-//1.2、使用最优化算法计算最终的权重值
+//3、使用最优化算法计算最终的权重值
 val weightsWithIntercept = optimizer.optimize(data, initialWeightsWithIntercept)
 //梯度下降算法和L-BFGS两种算法来计算最终的权重值，查看梯度下降法和L-BFGS了解详细实现。 这两种算法均使用Gradient的实现类计算梯度，使用Updater的实现类更新参数。在LogisticRegressionWithSGD和LogisticRegressionWithLBFGS中，它们均使用LogisticGradient实现类计算梯度，使用SquaredL2Updater实现类更新参数。
 
-//在GradientDescent中
+//在LinearRegressionWithSGD类中调用GradientDescent.scala
 private val gradient = new LogisticGradient()
 private val updater = new SquaredL2Updater()
 override val optimizer = new GradientDescent(gradient, updater)
@@ -136,8 +144,10 @@ override val optimizer = new GradientDescent(gradient, updater)
 //在LBFGS中
 override val optimizer = new LBFGS(new LogisticGradient, new SquaredL2Updater)
 
+//(三)、最优化计算方法 
+//1、GradientDescent.scala
 //下面将详细介绍LogisticGradient的实现和SquaredL2Updater的实现。
-//1.2.1、LogisticGradient
+//1.1、LogisticGradient
 //LogisticGradient中使用compute方法计算梯度。计算分为两种情况，即二元逻辑回归的情况和多元逻辑回归的情况。虽然多元逻辑回归也可以实现二元分类，但是为了效率，compute方法仍然实现了一个二元逻辑回归的版本。
 val margin = -1.0 * dot(data, weights)
 val multiplier = (1.0 / (1.0 + math.exp(margin))) - label
@@ -215,7 +225,7 @@ if (maxMargin > 0) {
      loss
 }
 
-//1.2.2、SquaredL2Updater
+//1.2、SquaredL2Updater
 class SquaredL2Updater extends Updater {
   override def compute(
       weightsOld: Vector,
@@ -278,9 +288,9 @@ if (useFeatureScaling) {
 //1.4、创建模型
 createModel(weights, intercept)
 
-//2、预测
+//(四)、模型预测
 //训练完模型之后，我们就可以通过训练的模型计算得到测试数据的分类信息。predictPoint用来预测分类信息。它针对二分类和多分类，分别进行处理。
-//2.1、二分类的情况
+//1、二分类的情况
 val margin = dot(weightMatrix, dataMatrix) + intercept
 val score = 1.0 / (1.0 + math.exp(-margin))
 threshold match {
@@ -289,7 +299,7 @@ threshold match {
 }
 //我们可以看到1.0 / (1.0 + math.exp(-margin))就是上文提到的逻辑函数即sigmoid函数。
 
-//2.2、多分类情况
+//2、多分类情况
 var bestClass = 0
 var maxMargin = 0.0
 val withBias = dataMatrix.size + 1 == dataWithBiasSize
