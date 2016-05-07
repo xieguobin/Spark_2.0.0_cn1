@@ -576,3 +576,6 @@ http://spark.apache.org/docs/latest/mllib-collaborative-filtering.html
 https://www.codementor.io/spark/tutorial/building-a-recommender-with-apache-spark-python-example-app-part1
 http://blog.javachen.com/2015/04/17/spark-mllib-collaborative-filtering.html
 http://www.zhihu.com/question/31509438
+
+http://colobu.com/2015/11/30/movie-recommendation-for-douban-users-by-spark-mllib/?hmsr=toutiao.io&utm_medium=toutiao.io&utm_source=toutiao.io
+http://www.aboutyun.com/forum.php?mod=viewthread&tid=12988&extra=page%3D4%26filter%3Dauthor%26orderby%3Ddateline
