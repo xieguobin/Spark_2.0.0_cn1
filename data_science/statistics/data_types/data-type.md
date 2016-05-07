@@ -3,12 +3,12 @@
 
 ##1、本地向量(Local vector)
 //一个本地向量拥有从0开始的integer类型的索引以及double类型的值，它保存在单台机器上面。MLlib支持两种类型的本地向量：稠密(dense)向量和稀疏(sparse)向量。 一个稠密向量通过一个double类型的数组保存数据，这个数组表示向量的条目值(entry values)；一个稀疏向量通过两个并行的数组（indices和values）保存数据。例如，一个向量 (1.0, 0.0, 3.0)可以以稠密的格式保存为[1.0, 0.0, 3.0]或者以稀疏的格式保存为(3, [0, 2], [1.0, 3.0])，其中3表示数组的大小。  
+//本地向量的基类是Vector，Spark提供了两种实现： DenseVector和SparseVector。  
+Spark官方推荐使用Vectors中实现的工厂方法去创建本地向量。下面是创建本地向量的例子。  
 
-//本地向量的基类是Vector，Spark提供了两种实现： DenseVector和SparseVector。 Spark官方推荐使用Vectors中实现的工厂方法去创建本地向量。下面是创建本地向量的例子。
-
-import org.apache.spark.mllib.linalg.{Vector, Vectors}
-// 创建一个dense vector (1.0, 0.0, 3.0).
-val dv: Vector = Vectors.dense(1.0, 0.0, 3.0)
+import org.apache.spark.mllib.linalg.{Vector, Vectors}  
+// 创建一个dense vector (1.0, 0.0, 3.0).  
+val dv: Vector = Vectors.dense(1.0, 0.0, 3.0)  
 // 创建一个sparse vector (1.0, 0.0, 3.0)并且指定它的索引和值
 val sv1: Vector = Vectors.sparse(3, Array(0, 2), Array(1.0, 3.0))
 // 创建一个sparse vector (1.0, 0.0, 3.0)并且指定它的索引和值
