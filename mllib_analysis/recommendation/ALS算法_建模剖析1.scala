@@ -65,6 +65,8 @@ alpha
 一般学习Spark MLlib ALS会使用movielens数据集。这个数据集保存了用户对电影的评分。
 但是这个数据集对于国内用户来说有点不接地气，事实上国内有一些网站可以提供这样的数据集，比如豆瓣，它的人气还是挺高的。
 但是豆瓣并没有提供这样一个公开的数据集，所以我用抓取了一些数据做测试。
+测试数据地址：https://github.com/smallnest/douban-recommender/tree/master/data
+
 
 数据集分为两个文件：
 
