@@ -1,6 +1,7 @@
 # mlws_chap05
 
-## 封装包和代码环境
+## 0、封装包和代码环境
+```scala
 package mllib_book.mlws.chap05_classification
 
 import org.apache.spark.{SparkConf,SparkContext}  
@@ -20,9 +21,10 @@ import org.apache.spark.mllib.tree.impurity._
 object Lr01 extends App{  
   val conf = new SparkConf().setAppName("Spark_Lr").setMaster("local")  
   val sc = new SparkContext(conf)  
+```  
   
-  
-## 1、数据导入和特征抽取  
+## 1、数据导入和特征抽取   
+```scala
 // kaggle2.blob.core.windows.net/competitions-data/kaggle/3526/train.tsv  
 // sed 1d train.tsv > train_noheader.tsv  
 // load raw data
@@ -32,14 +34,35 @@ records.first
 // Array[String] = Array("http://www.bloomberg.com/news/2010-12-23/ibm-predicts-holographic-calls-air-breathing-batteries-by-2015.html", "4042", ...  
 
 val data = records.map { r =>  
-    val trimmed = r.map(_.replaceAll("\"", ""))  
-    val label = trimmed(r.size - 1).toInt  
-    val features = trimmed.slice(4, r.size - 1).map(d => if (d == "?") 0.0 else d.toDouble)  
-    LabeledPoint(label, Vectors.dense(features))  
+  val trimmed = r.map(_.replaceAll("\"", ""))  
+  val label = trimmed(r.size - 1).toInt  
+  val features = trimmed.slice(4, r.size - 1).map(d => if (d == "?") 0.0 else d.toDouble)  
+  LabeledPoint(label, Vectors.dense(features))  
 }  
 data.cache  
 val numData = data.count  
 // numData: Long = 7395  
+
+// note that some of our data contains negative feature vaues. For naive Bayes we convert these to zeros
+val nbData = records.map { r =>
+  val trimmed = r.map(_.replaceAll("\"", ""))
+  val label = trimmed(r.size - 1).toInt
+  val features = trimmed.slice(4, r.size - 1).map(d => if (d == "?") 0.0 else d.toDouble).map(d => if (d < 0) 0.0 else d)
+  LabeledPoint(label, Vectors.dense(features))
+}
+```  
+
+## 2、训练分类模型  
+```scala
+val numIterations = 10
+val maxTreeDepth = 5
+val lrModel = LogisticRegressionWithSGD.train(data, numIterations)
+val svmModel = SVMWithSGD.train(data, numIterations)
+// note we use nbData here for the NaiveBayes model training
+val nbModel = NaiveBayes.train(nbData) 
+val dtModel = DecisionTree.train(data, Algo.Classification, Entropy, maxTreeDepth)
+```  
+
 
 
 
