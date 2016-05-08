@@ -208,7 +208,7 @@ fig = matplotlib.pyplot.gcf()
 fig.set_size_inches(16, 10)
 ``` 
 
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.0.png" width = "500" height = "250" alt="1.1" align="center" /></div><br>  
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.0.png" width = "500" height = "250" alt="4.0" align="center" /></div><br>  
 //因为**不符合正态分布**，所以**对数变换**（用目标值的对数代替原始数值）或者平方根     
 
 ```scala
@@ -220,7 +220,7 @@ fig = matplotlib.pyplot.gcf()
 fig.set_size_inches(16, 10)
 ```
 
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.1.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.1.png" width = "500" height = "250" alt="4.1" align="center" /></div><br> 
 
 ```scala
 // 4.2、平方根变换
@@ -230,7 +230,7 @@ hist(sqrt_targets, bins=40, color='lightblue', normed=True)
 fig = matplotlib.pyplot.gcf()
 fig.set_size_inches(16, 10)
 ```
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.2.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.2.png" width = "500" height = "250" alt="4.2" align="center" /></div><br> 
 
 ```scala
 // 4.3、对数变换的影响
@@ -325,7 +325,8 @@ pyplot.xscale('log')
 ```
 
 //迭代次数与RMSLE关系图
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.2.png" width = "500" height = "100" alt="1.1" align="center" /></div><br> 
+
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.2.png" width = "300" height = "100" alt="1.1" align="center" /></div><br> 
 
 ```scala
 // 4.5.3、步长
