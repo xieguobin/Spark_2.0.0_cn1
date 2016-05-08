@@ -208,10 +208,8 @@ fig = matplotlib.pyplot.gcf()
 fig.set_size_inches(16, 10)
 ``` 
 
-![image](https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.0.png)  width = "590" height = "300" alt="1.1" align="center"  
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.0.png" width = "590" height = "300" alt="1.1" align="center" /></div><br>  
-//因为**不符合正态分布**，所以**对数变换**（用目标值的对数代替原始数值）或者平方根  
-
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.0.png" width = "500" height = "250" alt="1.1" align="center" /></div><br>  
+//因为**不符合正态分布**，所以**对数变换**（用目标值的对数代替原始数值）或者平方根     
 
 ```scala
 // 4.1、对数变换
@@ -220,14 +218,21 @@ log_targets = records.map(lambda r: np.log(float(r[-1]))).collect()
 hist(log_targets, bins=40, color='lightblue', normed=True)
 fig = matplotlib.pyplot.gcf()
 fig.set_size_inches(16, 10)
+```
 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.1.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+
+```scala
 // 4.2、平方根变换
 sqrt_targets = records.map(lambda r: np.sqrt(float(r[-1]))).collect()
 
 hist(sqrt_targets, bins=40, color='lightblue', normed=True)
 fig = matplotlib.pyplot.gcf()
 fig.set_size_inches(16, 10)
+```
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.2.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
 
+```scala
 // 4.3、对数变换的影响
 data_log = data.map(lambda lp: LabeledPoint(np.log(lp.label), lp.features))
 model_log = LinearRegressionWithSGD.train(data_log, iterations=10, step=0.1)
@@ -299,7 +304,9 @@ print "Train + Test size : %d" % (train_size + test_size)
 //Test data size: 3445
 //Total data size: 17379
 //Train + Test size : 17379
+```
 
+```scala
 // 4.5、线性模型调优
 // 4.5.1、评估函数
 def evaluate(train, test, iterations, step, regParam, regType, intercept):
@@ -317,7 +324,12 @@ print metrics
 plot(params, metrics)
 fig = matplotlib.pyplot.gcf()
 pyplot.xscale('log')
+```
+
 //迭代次数与RMSLE关系图
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.2.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+
+```scala
 // 4.5.3、步长
 params = [0.01, 0.025, 0.05, 0.1, 1.0]
 metrics = [evaluate(train_data, test_data, 10, param, 0.0, 'l2', False) for param in params]
@@ -328,7 +340,12 @@ print metrics
 plot(params, metrics)
 fig = matplotlib.pyplot.gcf()
 pyplot.xscale('log')
+```
+
 //步长对预测结果的影响
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.3.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+
+```scala
 // 4.5.4、L2正则化
 params = [0.0, 0.01, 0.1, 1.0, 5.0, 10.0, 20.0]
 metrics = [evaluate(train_data, test_data, 10, 0.1, param, 'l2', False) for param in params]
@@ -339,6 +356,11 @@ fig = matplotlib.pyplot.gcf()
 pyplot.xscale('log')
 //[0.0, 0.01, 0.1, 1.0, 5.0, 10.0, 20.0]
 //[1.5027293911925559, 1.5020646031965639, 1.4961903335175231, 1.4479313176192781, 1.4113329999970989, 1.5379824584440471, //1.8279564444985839]
+```
+
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.4.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+
+```scala
 // 4.5.5、L1正则化
 params = [0.0, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
 metrics = [evaluate(train_data, test_data, 10, 0.1, param, 'l1', False) for param in params]
@@ -349,7 +371,11 @@ fig = matplotlib.pyplot.gcf()
 pyplot.xscale('log')
 //[0.0, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
 //[1.5027293911925559, 1.5026938950690176, 1.5023761634555699, 1.499412856617814, 1.4713669769550108, 1.7596682962964318, //4.7551250073268614]
+```
 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.5.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+
+```scala
 model_l1 = LinearRegressionWithSGD.train(train_data, 10, 0.1, regParam=1.0, regType='l1', intercept=False)
 model_l1_10 = LinearRegressionWithSGD.train(train_data, 10, 0.1, regParam=10.0, regType='l1', intercept=False)
 model_l1_100 = LinearRegressionWithSGD.train(train_data, 10, 0.1, regParam=100.0, regType='l1', intercept=False)
@@ -359,6 +385,7 @@ print "L1 (100.0) number of zeros weights: " + str(sum(model_l1_100.weights.arra
 //L1 (1.0) number of zero weights: 4
 //L1 (10.0) number of zeros weights: 33
 //L1 (100.0) number of zeros weights: 58
+
 // 4.5.6、截距
 // Intercept
 params = [False, True]
@@ -369,7 +396,11 @@ bar(params, metrics, color='lightblue')
 fig = matplotlib.pyplot.gcf()
 //[False, True]
 //[1.4479313176192781, 1.4798261513419801]
+```
 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.6.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+
+```scala
 // 4.6、决策树调优
 // 4.6.1、评估函数
 def evaluate_dt(train, test, maxDepth, maxBins):
@@ -388,7 +419,11 @@ plot(params, metrics)
 fig = matplotlib.pyplot.gcf()
 [1, 2, 3, 4, 5, 10, 20]
 [1.0280339660196287, 0.92686672078778276, 0.81807794023407532, 0.74060228537329209, 0.63583503599563096, 0.4276659008415965, 0.45481197001756291]
+```
 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_6.2.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+
+```scala
 // 4.6.3、最大划分数
 params = [2, 4, 8, 16, 32, 64, 100]
 metrics = [evaluate_dt(train_data_dt, test_data_dt, 5, param) for param in params]
@@ -399,4 +434,6 @@ fig = matplotlib.pyplot.gcf()
 //[2, 4, 8, 16, 32, 64, 100]
 //[1.3076555360778914, 0.81721457107308615, 0.75651792347650992, 0.63786761731722474, 0.63583503599563096, 0.63583503599563096, //0.63583503599563096]
 ```
+
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_6.3.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
 
