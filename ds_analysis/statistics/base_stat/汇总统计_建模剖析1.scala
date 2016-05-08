@@ -15,7 +15,7 @@ object Summary_statistics extends App{
   val sc = new SparkContext(conf)
   
 //获取数据，转换成rdd类型
-val observations_path = sc.textFile("C:/my_install/spark/data/mllib2/sample_stat.txt")
+val observations_path = "C:/my_install/spark/data/mllib2/sample_stat.txt"
 val observations = sc.textFile(observations_path).map(_.split("\t")).map(f => f.map(f => f.toDouble))  
 val observations1 = observations.map(f => Vectors.dense(f))  
 
