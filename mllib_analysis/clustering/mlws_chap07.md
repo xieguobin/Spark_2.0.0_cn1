@@ -128,7 +128,9 @@ val movieCost = movieClusterModel.computeCost(movieVectors)
 val userCost = userClusterModel.computeCost(userVectors)
 println("WCSS for movies: " + movieCost)
 println("WCSS for users: " + userCost)
+```
 
+```scala
 ##// 5、模型调优
 // 通过交叉验证选择K
 val trainTestSplitMovies = movieVectors.randomSplit(Array(0.6, 0.4), 123)
