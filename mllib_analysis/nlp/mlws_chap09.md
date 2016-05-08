@@ -165,7 +165,6 @@ val globalMinMax = minMaxVals.reduce { case ((min1, max1), (min2, max2)) =>
 }
 println(globalMinMax)
 //globalMinMax: (Double, Double) = (0.0,66155.39470409753)
-
 // 常用词
 val common = sc.parallelize(Seq(Seq("you", "do", "we")))
 val tfCommon = hashingTF.transform(common)
@@ -173,7 +172,6 @@ val tfidfCommon = idf.transform(tfCommon)
 val commonVector = tfidfCommon.first.asInstanceOf[SV]
 println(commonVector.values.toSeq)
 //WrappedArray(0.9965359935704624, 1.3348773448236835, 0.5457486182039175)
-
 // 不常出现的单词
 val uncommon = sc.parallelize(Seq(Seq("telescope", "legislation", "investment")))
 val tfUncommon = hashingTF.transform(uncommon)
@@ -182,6 +180,7 @@ val uncommonVector = tfidfUncommon.first.asInstanceOf[SV]
 println(uncommonVector.values.toSeq)
 //WrappedArray(5.3265513728351666, 5.308532867332488, 5.483736956357579)
 ```
+
 ##// 4、使用模型
 ```scala
 // 4.1、余弦相似度
@@ -248,6 +247,7 @@ val metrics = new MulticlassMetrics(predictionAndLabel)
 println(metrics.weightedFMeasure)
 //0.7810675969031116
 ```
+
 ##// 5、评估模型
 ```scala
 val rawTokens = rdd.map { case (file, text) => text.split(" ") }
@@ -274,6 +274,7 @@ import org.apache.spark.mllib.feature.Word2Vec
 val word2vec = new Word2Vec()
 word2vec.setSeed(42) // we do this to generate the same results each time
 val word2vecModel = word2vec.fit(tokens)
+
 // 6.2 使用
 // 最相似的20个单词
 word2vecModel.findSynonyms("hockey", 20).foreach(println)
