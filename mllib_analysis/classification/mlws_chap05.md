@@ -18,8 +18,8 @@ import org.apache.spark.mllib.tree.DecisionTree
 import org.apache.spark.mllib.tree.configuration.Algo  
 import org.apache.spark.mllib.tree.impurity._  
 
-object Lr01 extends App{  
-  val conf = new SparkConf().setAppName("Spark_Lr").setMaster("local")  
+object chap05 extends App{  
+  val conf = new SparkConf().setAppName("Spark_chap05").setMaster("local")  
   val sc = new SparkContext(conf)  
 ```  
   
