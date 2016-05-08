@@ -206,6 +206,7 @@ targets = records.map(lambda r: float(r[-1])).collect()
 hist(targets, bins=40, color='lightblue', normed=True)
 fig = matplotlib.pyplot.gcf()
 fig.set_size_inches(16, 10)
+
 //因为**不符合正态分布**，所以**对数变换**（用目标值的对数代替原始数值）或者平方根
 
 // 4.1、对数变换
