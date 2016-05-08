@@ -104,8 +104,9 @@ val scaler = new StandardScaler(withMean = true, withStd = false).fit(vectors)
 val scaledVectors = vectors.map(v => scaler.transform(v))
 ```
 
-```scala
+
 ##// 2、训练降维模型
+```scala
 // 2.1、前k个主成分
 import org.apache.spark.mllib.linalg.Matrix
 import org.apache.spark.mllib.linalg.distributed.RowMatrix
@@ -139,8 +140,8 @@ def plot_gallery(images, h, w, n_row=2, n_col=5):
 plot_gallery(pc, 50, 50)
 //8_3
 ```
-```scala
 // 3、使用降维模型
+```scala
 // 3.1、PCA投影（图像矩阵x主成分矩阵）
 val projected = matrix.multiply(pc)
 println(projected.numRows, projected.numCols)
@@ -175,8 +176,9 @@ val projectedSVD = svd.U.rows.map { v =>
 }
 projected.rows.zip(projectedSVD).map { case (v1, v2) => approxEqual(v1.toArray, v2.toArray) }.filter(b => true).count
 ```
-```scala
+
 // 4、评价降维模型
+```scala
 // 4.1、评估SVD的k值
 val sValues = (1 to 5).map { i => matrix.computeSVD(i, computeU = false).s }
 val svd300 = matrix.computeSVD(300, computeU = false)
