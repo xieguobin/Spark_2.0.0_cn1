@@ -15,8 +15,8 @@ from pyspark.mllib.regression import LinearRegressionWithSGD
 from pyspark.mllib.tree import DecisionTree
 import numpy as np
 
-object Lr01 extends App{  
-  val conf = new SparkConf().setAppName("Spark_Lr").setMaster("local")  
+object chap06 extends App{  
+  val conf = new SparkConf().setAppName("Spark_chap06").setMaster("local")  
   val sc = new SparkContext(conf)  
 ```  
   
