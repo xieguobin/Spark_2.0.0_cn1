@@ -326,7 +326,7 @@ pyplot.xscale('log')
 
 //迭代次数与RMSLE关系图
 
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.2.png" width = "300" height = "100" alt="1.1" align="center" /></div><br> 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.2.png" width = "700" height = "150" alt="4.5.2" align="center" /></div><br> 
 
 ```scala
 // 4.5.3、步长
@@ -342,7 +342,7 @@ pyplot.xscale('log')
 ```
 
 //步长对预测结果的影响
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.3.png" width = "500" height = "150" alt="1.1" align="center" /></div><br> 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.3.png" width = "700" height = "200" alt="4.5.3" align="center" /></div><br> 
 
 ```scala
 // 4.5.4、L2正则化
