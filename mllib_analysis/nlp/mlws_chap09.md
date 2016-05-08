@@ -9,7 +9,7 @@ cd $SPARK_HOME
 bin/spark-shell --name my_mlib --packages org.jblas:jblas:1.2.4-SNAPSHOT --driver-memory 4G --executor-memory 4G --driver-cores 2  
 
 ```scala
-package mllib_book.mlws.chap08_textprocess
+package mllib_book.mlws.chap09_textprocess
 
 object chap09 extends App{  
   val conf = new SparkConf().setAppName("Spark_chap09").setMaster("local")  
