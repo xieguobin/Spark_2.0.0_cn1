@@ -20,8 +20,8 @@ IPYTHON=1 IPYTHON_OPTS="--pylab" ./bin/pyspark
 ```scala
 package mllib_book.mlws.chap03_dataprepare
 
-object Lr01 extends App{  
-  val conf = new SparkConf().setAppName("Spark_Lr").setMaster("local")  
+object chap03 extends App{  
+  val conf = new SparkConf().setAppName("Spark_chap03").setMaster("local")  
   val sc = new SparkContext(conf)  
 ```  
   
