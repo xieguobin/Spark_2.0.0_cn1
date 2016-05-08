@@ -304,9 +304,7 @@ print "Train + Test size : %d" % (train_size + test_size)
 //Test data size: 3445
 //Total data size: 17379
 //Train + Test size : 17379
-```
 
-```scala
 // 4.5、线性模型调优
 // 4.5.1、评估函数
 def evaluate(train, test, iterations, step, regParam, regType, intercept):
@@ -327,7 +325,7 @@ pyplot.xscale('log')
 ```
 
 //迭代次数与RMSLE关系图
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.2.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.2.png" width = "500" height = "100" alt="1.1" align="center" /></div><br> 
 
 ```scala
 // 4.5.3、步长
@@ -343,7 +341,7 @@ pyplot.xscale('log')
 ```
 
 //步长对预测结果的影响
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.3.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.3.png" width = "500" height = "150" alt="1.1" align="center" /></div><br> 
 
 ```scala
 // 4.5.4、L2正则化
@@ -358,7 +356,7 @@ pyplot.xscale('log')
 //[1.5027293911925559, 1.5020646031965639, 1.4961903335175231, 1.4479313176192781, 1.4113329999970989, 1.5379824584440471, //1.8279564444985839]
 ```
 
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.4.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.4.png" width = "500" height = "400" alt="1.1" align="center" /></div><br> 
 
 ```scala
 // 4.5.5、L1正则化
@@ -373,7 +371,7 @@ pyplot.xscale('log')
 //[1.5027293911925559, 1.5026938950690176, 1.5023761634555699, 1.499412856617814, 1.4713669769550108, 1.7596682962964318, //4.7551250073268614]
 ```
 
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.5.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.5.png" width = "500" height = "400" alt="1.1" align="center" /></div><br> 
 
 ```scala
 model_l1 = LinearRegressionWithSGD.train(train_data, 10, 0.1, regParam=1.0, regType='l1', intercept=False)
@@ -421,7 +419,7 @@ fig = matplotlib.pyplot.gcf()
 [1.0280339660196287, 0.92686672078778276, 0.81807794023407532, 0.74060228537329209, 0.63583503599563096, 0.4276659008415965, 0.45481197001756291]
 ```
 
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_6.2.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_6.2.png" width = "500" height = "350" alt="1.1" align="center" /></div><br> 
 
 ```scala
 // 4.6.3、最大划分数
@@ -435,5 +433,5 @@ fig = matplotlib.pyplot.gcf()
 //[1.3076555360778914, 0.81721457107308615, 0.75651792347650992, 0.63786761731722474, 0.63583503599563096, 0.63583503599563096, //0.63583503599563096]
 ```
 
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_6.3.png" width = "500" height = "250" alt="1.1" align="center" /></div><br> 
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_6.3.png" width = "500" height = "350" alt="1.1" align="center" /></div><br> 
 
