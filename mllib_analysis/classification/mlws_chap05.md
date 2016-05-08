@@ -1,6 +1,6 @@
-# mlws_chap05(Spark机器学习 Nick Pentreath,第五章)
+#// mlws_chap05(Spark机器学习,第五章)
 
-## 0、封装包和代码环境
+##// 0、封装包和代码环境
 ```scala
 package mllib_book.mlws.chap05_classification
 
@@ -23,7 +23,7 @@ object Lr01 extends App{
   val sc = new SparkContext(conf)  
 ```  
   
-## 1、数据导入和特征抽取   
+##// 1、数据导入和特征抽取   
 ```scala
 // kaggle2.blob.core.windows.net/competitions-data/kaggle/3526/train.tsv  
 // sed 1d train.tsv > train_noheader.tsv  
@@ -52,7 +52,7 @@ val nbData = records.map { r =>
 }
 ```  
 
-## 2、训练分类模型  
+##// 2、训练分类模型  
 ```scala
 val numIterations = 10
 val maxTreeDepth = 5
@@ -63,7 +63,7 @@ val nbModel = NaiveBayes.train(nbData)                                          
 val dtModel = DecisionTree.train(data, Algo.Classification, Entropy, maxTreeDepth)   //决策树
 ```  
 
-## 3、使用分类模型进行预测
+##// 3、使用分类模型进行预测
 ```scala
 val dataPoint = data.first
 // dataPoint: org.apache.spark.mllib.regression.LabeledPoint = LabeledPoint(0.0, [0.789131,2.055555556,0.676470588, ...
@@ -75,7 +75,7 @@ val predictions = lrModel.predict(data.map(lp => lp.features))
 predictions.take(5)
 // res1: Array[Double] = Array(1.0, 1.0, 1.0, 1.0, 1.0)
 ```
-## 4、评估分类模型性能
+##// 4、评估分类模型性能
 ```scala
 // 4.1、accuracy
 // compute accuracy for logistic regression
@@ -151,7 +151,7 @@ DecisionTreeModel, Area under PR: 74.3081%, Area under ROC: 64.8837%
 */
 ```
 
-## 5、模型参数调优
+##// 5、模型参数调优
 ```scala
 // 5.1、连续数值型特征的转换与提取
 // standardizing the numerical features
