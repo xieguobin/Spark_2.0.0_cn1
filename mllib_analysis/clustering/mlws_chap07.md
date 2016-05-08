@@ -130,8 +130,9 @@ println("WCSS for movies: " + movieCost)
 println("WCSS for users: " + userCost)
 ```
 
-```scala
+
 ##// 5、模型调优
+```scala
 // 通过交叉验证选择K
 val trainTestSplitMovies = movieVectors.randomSplit(Array(0.6, 0.4), 123)
 val trainMovies = trainTestSplitMovies(0)
