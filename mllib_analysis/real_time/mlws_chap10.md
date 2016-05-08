@@ -305,8 +305,8 @@ object SimpleStreamingModel {
 // K-均值聚类：StreamingKMeans
 ```
 
-```scala
 ##// 6、模型评估
+```scala
 object MonitoringStreamingModel {
   def main(args: Array[String]) {
     val ssc = new StreamingContext("local[2]", "First Streaming App", Seconds(10))
