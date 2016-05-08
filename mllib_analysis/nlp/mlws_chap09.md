@@ -11,8 +11,8 @@ bin/spark-shell --name my_mlib --packages org.jblas:jblas:1.2.4-SNAPSHOT --drive
 ```scala
 package mllib_book.mlws.chap08_textprocess
 
-object chap08 extends App{  
-  val conf = new SparkConf().setAppName("Spark_chap08").setMaster("local")  
+object chap09 extends App{  
+  val conf = new SparkConf().setAppName("Spark_chap09").setMaster("local")  
   val sc = new SparkContext(conf)  
 ```  
   
