@@ -1,21 +1,21 @@
 #// mlws_chap03(Spark机器学习,第三章)
 
 ##// 0、封装包和代码环境
-// anaconda
-nano ~/.zshrc
-export PATH=$PATH:/anaconda/bin
-source ~/.zshrc
-echo $HOME
-echo $PATH
-// ipython
-conda update conda && conda update ipython ipython-notebook ipython-qtconsole
-conda install scipy
-//PYTHONPATH
-export SPARK_HOME=/Users/erichan/garden/spark-1.5.1-bin-hadoop2.6
-export PYTHONPATH=${SPARK_HOME}/python/:${SPARK_HOME}/python/lib/py4j-0.8.2.1-src.zip
-//运行环境
-cd $SPARK_HOME
-IPYTHON=1 IPYTHON_OPTS="--pylab" ./bin/pyspark
+// anaconda  
+nano ~/.zshrc  
+export PATH=$PATH:/anaconda/bin  
+source ~/.zshrc  
+echo $HOME  
+echo $PATH  
+// ipython  
+conda update conda && conda update ipython ipython-notebook ipython-qtconsole  
+conda install scipy  
+//PYTHONPATH  
+export SPARK_HOME=/Users/erichan/garden/spark-1.5.1-bin-hadoop2.6  
+export PYTHONPATH=${SPARK_HOME}/python/:${SPARK_HOME}/python/lib/py4j-0.8.2.1-src.zip  
+//运行环境  
+cd $SPARK_HOME  
+IPYTHON=1 IPYTHON_OPTS="--pylab" ./bin/pyspark  
 
 ```scala
 package mllib_book.mlws.chap03_dataprepare
