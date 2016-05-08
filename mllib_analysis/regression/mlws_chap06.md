@@ -312,7 +312,6 @@ plot(params, metrics)
 fig = matplotlib.pyplot.gcf()
 pyplot.xscale('log')
 //迭代次数与RMSLE关系图
-
 // 4.5.3、步长
 params = [0.01, 0.025, 0.05, 0.1, 1.0]
 metrics = [evaluate(train_data, test_data, 10, param, 0.0, 'l2', False) for param in params]
@@ -324,7 +323,6 @@ plot(params, metrics)
 fig = matplotlib.pyplot.gcf()
 pyplot.xscale('log')
 //步长对预测结果的影响
-
 // 4.5.4、L2正则化
 params = [0.0, 0.01, 0.1, 1.0, 5.0, 10.0, 20.0]
 metrics = [evaluate(train_data, test_data, 10, 0.1, param, 'l2', False) for param in params]
@@ -335,7 +333,6 @@ fig = matplotlib.pyplot.gcf()
 pyplot.xscale('log')
 //[0.0, 0.01, 0.1, 1.0, 5.0, 10.0, 20.0]
 //[1.5027293911925559, 1.5020646031965639, 1.4961903335175231, 1.4479313176192781, 1.4113329999970989, 1.5379824584440471, //1.8279564444985839]
-
 // 4.5.5、L1正则化
 params = [0.0, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
 metrics = [evaluate(train_data, test_data, 10, 0.1, param, 'l1', False) for param in params]
@@ -396,5 +393,4 @@ fig = matplotlib.pyplot.gcf()
 //[2, 4, 8, 16, 32, 64, 100]
 //[1.3076555360778914, 0.81721457107308615, 0.75651792347650992, 0.63786761731722474, 0.63583503599563096, 0.63583503599563096, //0.63583503599563096]
 ```
-
 
