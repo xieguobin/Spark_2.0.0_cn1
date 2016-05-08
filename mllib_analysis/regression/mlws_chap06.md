@@ -326,7 +326,7 @@ pyplot.xscale('log')
 
 //迭代次数与RMSLE关系图
 
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.2.png" width = "700" height = "150" alt="4.5.2" align="center" /></div><br> 
+![image](https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_5.2.png")
 
 ```scala
 // 4.5.3、步长
