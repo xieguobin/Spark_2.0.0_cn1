@@ -208,9 +208,10 @@ fig = matplotlib.pyplot.gcf()
 fig.set_size_inches(16, 10)
 ``` 
 
-![image](https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.0.png)
-//因为**不符合正态分布**，所以**对数变换**（用目标值的对数代替原始数值）或者平方根
-<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.0.png" width = "590" height = "300" alt="1.1" align="center" /></div><br>
+![image](https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.0.png)  width = "590" height = "300" alt="1.1" align="center"  
+<div  align="center"><img src="https://github.com/xieguobin/Spark_2.0.0_cn1/blob/master/figures/chap06_4.0.png" width = "590" height = "300" alt="1.1" align="center" /></div><br>  
+//因为**不符合正态分布**，所以**对数变换**（用目标值的对数代替原始数值）或者平方根  
+
 
 ```scala
 // 4.1、对数变换
