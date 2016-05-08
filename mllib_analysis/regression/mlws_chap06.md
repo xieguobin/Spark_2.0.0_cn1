@@ -1,6 +1,6 @@
-# mlws_chap06(Spark机器学习 Nick Pentreath,第六章)
+#// mlws_chap06(Spark机器学习,第六章)
 
-## 0、封装包和代码环境
+##// 0、封装包和代码环境
 export SPARK_HOME=/Users/erichan/garden/spark-1.5.1-bin-hadoop2.6  
 export PYTHONPATH=${SPARK_HOME}/python/:${SPARK_HOME}/python/lib/py4j-0.8.2.1-src.zip  
 
@@ -20,7 +20,7 @@ object Lr01 extends App{
   val sc = new SparkContext(conf)  
 ```  
   
-## 1、数据导入和特征抽取   
+##// 1、数据导入和特征抽取   
 ```scala
 // first remove the headers by using the 'sed' command: 
 // 数据集下载地址：http://archive.ics.uci.edu/ml/datasets/Bike+Sharing+Dataset.  
@@ -107,7 +107,7 @@ print "Decision Tree feature vector length: " + str(len(first_point_dt.features)
 //Decision Tree feature vector length: 12
 ```  
 
-## 2、训练回归模型  
+##// 2、训练回归模型  
 ```scala
 // 2.1、帮助
 help(LinearRegressionWithSGD.train)
@@ -133,7 +133,7 @@ print "Decision Tree number of nodes: " + str(dt_model.numNodes())
 //Decision Tree number of nodes: 63
 ```  
 
-## 3、评估回归模型性能
+##// 3、评估回归模型性能
 ```scala
 // 评估回归模型的方法：
 // 均方误差(MSE, Mean Sequared Error)
@@ -198,7 +198,7 @@ print "Decision Tree [Categorical feature]- Root Mean Squared Log Error: %2.4f" 
 //Decision Tree - Root Mean Squared Log Error: 0.6259
 //Decision Tree [Categorical feature]- Root Mean Squared Log Error: 0.6192
 ```
-## 4、评估分类模型性能
+##// 4、评估分类模型性能
 ```scala
 // 4.1、accuracy
 // compute accuracy for logistic regression
@@ -274,7 +274,7 @@ DecisionTreeModel, Area under PR: 74.3081%, Area under ROC: 64.8837%
 */
 ```
 
-## 5、模型参数调优
+##// 5、模型参数调优
 ```scala
 // 5.1、连续数值型特征的转换与提取
 // standardizing the numerical features
